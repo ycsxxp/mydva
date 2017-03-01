@@ -33,5 +33,4 @@ ProductList.propTypes = {
   onDelete: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
 };
-
 export default ProductList;
