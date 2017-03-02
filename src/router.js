@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route } from 'dva/router';
 import IndexPage from './routes/IndexPage';
 import Products from './routes/Products';
-import LoginPage from "./routes/LoginPage.js";
+import LoginPage from './routes/LoginPage.js';
 
 function RouterConfig({ history }) {
   return (

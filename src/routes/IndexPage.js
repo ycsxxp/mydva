@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'dva';
-import styles from './IndexPage.css';
+// import styles from './IndexPage.css';
 
-import SiderComponent from '../components/Index/Sider.js';
+import LayoutComponent from '../components/Index/Layout.js';
 
 function IndexPage() {
   return (
-    <SiderComponent />
+    <LayoutComponent />
   );
 }
 

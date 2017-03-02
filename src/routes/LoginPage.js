@@ -5,8 +5,8 @@ import styles from './LoginPage.css';
 
 function LoginPage() {
   return (
-  	<div className={styles.body}>
-    	<LoginForm />
+		<div className={styles.body}>
+			<LoginForm />
     </div>
   );
 }

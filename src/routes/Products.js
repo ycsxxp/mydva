@@ -6,7 +6,7 @@ const Products = ({ dispatch, products }) => {
   function handleDelete(id) {
     dispatch({
       type: 'products/delete',
-      payload: id,
+      payload: id
     });
   }
   return (
@@ -19,5 +19,5 @@ const Products = ({ dispatch, products }) => {
 
 // export default Products;
 export default connect(({ products }) => ({
-  products,
+  products
 }))(Products);

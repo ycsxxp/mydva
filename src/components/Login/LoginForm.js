@@ -6,7 +6,7 @@ import styles from './LoginForm.css';
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
-  handleSubmit = (e) => {
+	handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -14,21 +14,21 @@ class NormalLoginForm extends React.Component {
       }
     });
   }
-  render() {
-    const { getFieldDecorator } = this.props.form;
+	render() {
+		const { getFieldDecorator } = this.props.form;
     return (
-    	<div className={styles.divForm}>
-	      <Form onSubmit={this.handleSubmit} className={styles.form}>
+			<div className={styles.divForm}>
+    		<Form onSubmit={this.handleSubmit} className={styles.form}>
 	        <FormItem>
 	          {getFieldDecorator('userName', {
-	            rules: [{ required: true, message: 'Please input your username!' }],
+	            rules: [{ required: true, message: 'Please input your username!' }]
 	          })(
 	            <Input addonBefore={<Icon type="user" />} placeholder="Username" />
 	          )}
 	        </FormItem>
 	        <FormItem>
 	          {getFieldDecorator('password', {
-	            rules: [{ required: true, message: 'Please input your Password!' }],
+	            rules: [{ required: true, message: 'Please input your Password!' }]
 	          })(
 	            <Input addonBefore={<Icon type="lock" />} type="password" placeholder="Password" />
 	          )}
@@ -36,7 +36,7 @@ class NormalLoginForm extends React.Component {
 	        <FormItem>
 	          {getFieldDecorator('remember', {
 	            valuePropName: 'checked',
-	            initialValue: true,
+	            initialValue: true
 	          })(
 	            <Checkbox>Remember me</Checkbox>
 	          )}

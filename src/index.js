@@ -7,9 +7,9 @@ const app = dva({
 	initialState: {
 		products: [
 			{ name: 'dva', id: 1, comment: 'this is comment' },
-			{ name: 'antd', id: 2, comment: 'this is comment too' },
-		],
-	},
+			{ name: 'antd', id: 2, comment: 'this is comment too' }
+		]
+	}
 });
 // 2. Plugins
 // app.use({});
