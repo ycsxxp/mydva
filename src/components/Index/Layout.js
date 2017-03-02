@@ -9,17 +9,15 @@ const SubMenu = Menu.SubMenu;
 const TabPane = Tabs.TabPane;
 
 class LayoutComponent extends React.Component {
-  static callback(key) {
-    console.log(key);
-  }
-  constructor(props) {
-    super(props);
-    this.callback = this.callback.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.callback = this.callback.bind(this);
+  // }
   state = {
     collapsed: false,
     mode: 'inline'
   };
+
   onCollapse = (collapsed) => {
     // console.log(collapsed);
     this.setState({
@@ -27,6 +25,11 @@ class LayoutComponent extends React.Component {
       mode: collapsed ? 'vertical' : 'inline'
     });
   }
+
+  changeTab = (key) => {
+    console.log(key);
+  }
+
   render() {
     return (
       <Layout className={styles.layout}>
@@ -63,7 +66,7 @@ class LayoutComponent extends React.Component {
         <Layout>
           <Header className={styles.header} />
           <Content style={{ margin: '0 16px' }}>
-            <Tabs defaultActiveKey="1" onChange={this.callback}>
+            <Tabs defaultActiveKey="1" onChange={this.changeTab}>
               <TabPane tab="Tab 1" key="1">
                 <AccountManager />
               </TabPane>
