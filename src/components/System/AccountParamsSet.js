@@ -52,7 +52,7 @@ class AccountParamsSetForm extends React.Component {
 		    				required: true, message: '不能为空!'
 		    			}]
 		    		})(
-		    				<Input />
+		    				<Input type="text" placeholder="例如: 192.168.1.1" />
 		    		) }
 		    		</Popover>
 		    	</FormItem>
