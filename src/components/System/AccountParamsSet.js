@@ -1,59 +1,58 @@
 import React from 'react';
-import { Form, Input, InputNumber, Select, Checkbox, Button } from 'antd';
+import { Form, Input, InputNumber, Popover } from 'antd';
 
-
-// 	
-// 3
-// (分钟)	
-// 3
-// 登录多次失败后的处理方式	 锁定用户	系统默认开启锁定IP地址功能
-// 最小密码长度	
-// 10
-// 密码复杂度	
-// 2
-	 
-// 操作空闲退出时间(秒)	
-// 300
-// LDAP 认证服务器	
-// 0.0.0.0
-// Radius 认证服务器	
-// 0.0.0.0
-// Radius 认证端口	
-// 1812
-// Radius 认证方式	
-// Radius 认证共享密钥	
-// •••
-//  	确定
 import styles from './AccountParamsSet.css';
 
 const FormItem = Form.Item;
 
+function onChange(value) {
+  console.log('changed', value);
+}
 class AccountParamsSetForm extends React.Component {
 
 	render() {
-		const { getFieldDecorator } = this.props.form;	
+		const { getFieldDecorator } = this.props.form;
 		const formItemLayout = {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 14 },
+      labelCol: { span: 4 },
+      wrapperCol: { span: 4 }
     };
-    const tailFormItemLayout = {
-      wrapperCol: {
-        span: 14,
-        offset: 6,
-      },
-    };
+    const content = (
+  		<div>
+    		<p>Content</p>
+    		<p>Content</p>
+  		</div>
+		);
+    // const tailFormItemLayout = {
+    //   wrapperCol: {
+    //     span: 12,
+    //     offset: 6,
+    //   },
+    // };
 		return (
 		    <Form className={styles.normal}>
 		    	<FormItem {...formItemLayout} label="登录验证失败次数" >
-		    		{getFieldDecorator('input-number', { initialValue: 3})(
-	            <InputNumber min={1} max={10} />
-	          )}
+		    		{ getFieldDecorator('failed_times', { initialValue: 3 })(
+	            <InputNumber min={1} max={10} onChange={onChange} />
+	          ) }
 		    	</FormItem>
 		    	<FormItem {...formItemLayout} label="登录验证失败锁定时间" >
-		    		{getFieldDecorator('input-number', { initialValue: 3})(
-	            <InputNumber min={1} max={10} />
-	          )}
+		    		{ getFieldDecorator('lock_minute', { initialValue: 4 })(
+	            <InputNumber min={1} max={10} onChange={onChange} />
+	          ) }
 	          <span>分钟</span>
+		    	</FormItem>
+		    	<FormItem {...formItemLayout} label="LDAP认证服务器" hasFeedback >
+		    		{ getFieldDecorator('ldap_server', {
+		    			rules: [{
+		    				type: 'string', pattern: /^[a-z]+$/, message: '认证服务器格式错误'
+		    			}, {
+		    				required: true, message: '不能为空!'
+		    			}]
+		    		})(
+		    			<Popover content={content} title="Title" trigger="hover">
+		    				<Input />
+		    			</Popover>
+		    		) }
 		    	</FormItem>
 		    </Form>
 	  );

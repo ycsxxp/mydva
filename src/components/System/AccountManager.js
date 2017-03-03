@@ -8,17 +8,17 @@ class AccountManager extends React.Component {
 		const columns = [{
 			title: 'Name',
 			dataIndex: 'name',
-			render: text => <a href="#">{text}</a>,
+			render: text => <a href="#">{text}</a>
 		}, {
 			title: 'Age',
-			dataIndex: 'age',
+			dataIndex: 'age'
 		}, {
 			title: 'Address',
-			dataIndex: 'address',
+			dataIndex: 'address'
 		}];
 		const dataCount = 100;
 		const data = [];
-		for (var i = 0; i < dataCount; i++) {
+		for (let i = 0; i < dataCount; i++) {
 			data.push({
 				key: i,
 				name: 'yang-' + i,
@@ -38,10 +38,10 @@ class AccountManager extends React.Component {
 		    console.log(selected, selectedRows, changeRows);
 		  },
 		  getCheckboxProps: record => ({
-		    disabled: record.name === 'Disabled User',    // Column configuration not to be checked
-		  }),
+		    disabled: record.name === 'Disabled User'    // Column configuration not to be checked
+		  })
 		};
-		//分页配置
+		// 分页配置
 		const pagination = {
 			showSizeChanger: true,
 			defaultCurrent: 1,
@@ -49,10 +49,15 @@ class AccountManager extends React.Component {
 			pageSize: 5,
 			pageSizeOptions: ['5', '10', '30', '50', '100'],
 			showTotal: (total, range) => `${range[0]}-${range[1]} 共 ${total} 条`
-		}
+		};
 		return (
     	<div className={styles.normal}>
-      	<Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={pagination}/>
+      	<Table
+      		rowSelection={rowSelection}
+      		columns={columns}
+      		dataSource={data}
+      		pagination={pagination}
+      	/>
     	</div>
   	);
 	}
