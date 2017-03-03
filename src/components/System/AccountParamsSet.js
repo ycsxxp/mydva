@@ -42,17 +42,21 @@ class AccountParamsSetForm extends React.Component {
 	          <span>分钟</span>
 		    	</FormItem>
 		    	<FormItem {...formItemLayout} label="LDAP认证服务器" hasFeedback >
+		    		<Popover content={content} title="Title" trigger="hover">
 		    		{ getFieldDecorator('ldap_server', {
-		    			rules: [{
-		    				type: 'string', pattern: /^[a-z]+$/, message: '认证服务器格式错误'
+		    				rules: [{ 
+		    					type: 'string', 
+		    					pattern: /^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$/, 
+		    					message: '认证服务器格式错误'
 		    			}, {
 		    				required: true, message: '不能为空!'
 		    			}]
 		    		})(
-		    			<Popover content={content} title="Title" trigger="hover">
+		    			
 		    				<Input />
-		    			</Popover>
+		    			
 		    		) }
+		    		</Popover>
 		    	</FormItem>
 		    </Form>
 	  );
