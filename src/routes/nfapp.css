@@ -3,3 +3,8 @@
 	height: 100%;
 	background-size: auto;
 }
+.spin {
+  :global .ant-spin-container {
+    height: 100vh;
+  }
+}

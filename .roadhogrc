@@ -1,6 +1,13 @@
 {
   "entry": "src/index.js",
   "disableCSSModules": false,
+  "proxy": {
+    "/api": {
+      "target": "http://localhost/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api" : "" }
+    }
+  },
   "env": {
     "development": {
       "extraBabelPlugins": [

@@ -2,18 +2,17 @@ import React from 'react';
 import { Layout, Menu, Tabs, Icon } from 'antd';
 import AccountManager from '../System/AccountManager';
 import AccountParamsSet from '../System/AccountParamsSet';
-
+import Header from './Header'
 import styles from './Layout.css';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const TabPane = Tabs.TabPane;
 
 class LayoutComponent extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.callback = this.callback.bind(this);
-  // }
+  constructor(props) {
+    super(props);
+  }
   state = {
     collapsed: false,
     mode: 'inline'
@@ -65,7 +64,7 @@ class LayoutComponent extends React.Component {
           </Menu>
         </Sider>
         <Layout>
-          <Header className={styles.header} />
+          <Header className={styles.header} {...this.props.headerProps} />
           <Content style={{ margin: '0 16px' }}>
             <Tabs defaultActiveKey="2" onChange={this.changeTab}>
               <TabPane tab="帐号管理" key="1">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, InputNumber, Popover } from 'antd';
+import { Form, Input, InputNumber, Popover, Button } from 'antd';
 
 import styles from './AccountParamsSet.css';
 
@@ -56,6 +56,9 @@ class AccountParamsSetForm extends React.Component {
 		    		) }
 		    		</Popover>
 		    	</FormItem>
+		    	<FormItem wrapperCol={{ span: 8, offset: 4 }}>
+          	<Button type="primary" htmlType="submit">提交</Button>
+        	</FormItem>
 		    </Form>
 	  );
 	}

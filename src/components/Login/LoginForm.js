@@ -10,7 +10,7 @@ class NormalLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
       }
     });
   }
@@ -40,11 +40,12 @@ class NormalLoginForm extends React.Component {
 	          })(
 	            <Checkbox>Remember me</Checkbox>
 	          )}
-	          <a className={styles.forgot}>Forgot password</a>
+	          {
+	          	// <a lassName={styles.forgot}>Forgot password</a>
+	        	}
 	          <Button type="primary" htmlType="submit" className={styles.loginBtn}>
 	            Log in
 	          </Button>
-	          Or <a>register now!</a>
 	        </FormItem>
 	      </Form>
       </div>

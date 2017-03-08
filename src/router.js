@@ -1,19 +1,38 @@
 import React from 'react';
-import { Router, Route } from 'dva/router';
-import IndexPage from './routes/IndexPage';
-import Products from './routes/Products';
-import LoginPage from './routes/LoginPage.js';
+import { Router } from 'dva/router';
+// import Nfapp from './routes/nfapp';
 
-function RouterConfig({ history }) {
-  return (
-    <Router history={history}>
-      <Route path="/" component={LoginPage} />
-      <Route path="/index" component={IndexPage} />
-      <Route path="/login" component={LoginPage} />
-      <Route path="/LoginPage" component={LoginPage} />
-      <Route path="/products" component={Products} />
-    </Router>
-  );
+const cached = {};
+function registerModel(app, model) {
+  if (!cached[model.namespace]) {
+    app.model(model);
+    cached[model.namespace] = 1;
+  }
+}
+
+function RouterConfig({ history, app }) {
+  const routes = [
+    {
+      path: '/',
+      name: 'nfapp',
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          registerModel(app, require('./models/nfapp'));
+          cb(null, require('./routes/nfapp'))
+        })
+      }
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          cb(null, require('./routes/dashboard'))
+        })
+      }
+    }
+  ];
+  return <Router history={history} routes={routes} />;
 }
 
 export default RouterConfig;

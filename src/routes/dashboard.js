@@ -4,17 +4,18 @@ import { connect } from 'dva';
 // import styles from './IndexPage.css';
 // import enUS from 'antd/lib/locale-provider/en_US';
 
-import LayoutComponent from '../components/Index/Layout.js';
 
-function IndexPage() {
+// function Dashboard({ dashboard }) {
+function Dashboard() {
   return (
+  	<div>dashboard</div>
   	// <LocaleProvider locale={enUS}>
-    	<LayoutComponent />
+    	// <LayoutComponent />
     // </LocaleProvider>
   );
 }
 
-IndexPage.propTypes = {
+Dashboard.propTypes = {
 };
 
-export default connect()(IndexPage);
+export default connect(({ dashboard }) => ({ dashboard }))(Dashboard);

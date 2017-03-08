@@ -16,3 +16,6 @@
 .loginBtn {
   width: 100%;
 }
+.ant-spin-nested-loading {
+  height: 100%;
+}
