@@ -1,10 +1,11 @@
 import { parse } from 'qs'
-import { login } from '../services/nfapp'
+import { login, logout } from '../services/nfapp'
 
 export default {
   namespace: 'nfapp',
   state: {
-    loginStatus: false
+    loginStatus: false,
+    siderCollapsed: false
     // loading: false,
     // user: {
     //   name: '吴彦祖'
@@ -33,6 +34,22 @@ export default {
           type: 'loginFail'
         })
       }
+    },
+    *logout({ payload }, { call, put }) {
+      yield put({ type: 'showLoginButtonLoading' })
+      const { data } = yield call(logout, parse(payload))
+      if (data.success) {
+        yield put({
+          type: 'logoutSuccess'
+        })
+      } else {
+        yield put({
+          type: 'loginFail'
+        })
+      }
+    },
+    *toggleSider({ payload }, { call, put }) {
+      yield put({ type: 'toggleSiderDone' })
     }
   },
   reducers: {
@@ -42,6 +59,18 @@ export default {
         ...action.payload,
         loginStatus: true
         // loginButtonLoading: false
+      }
+    },
+    logoutSuccess(state) {
+      return {
+        ...state,
+        loginStatus: false
+      }
+    },
+    toggleSiderDone(state) {
+      return {
+        ...state,
+        siderCollapsed: !state.siderCollapsed
       }
     }
   },

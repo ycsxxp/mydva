@@ -4,11 +4,13 @@ import styles from './Header.less';
 
 const SubMenu = Menu.SubMenu
 
-function Header({ user, switchSider, siderFold }) {
-	let handleClickMenu = e => e.key === 'logout' && logout()
+function Header({ user, logout, toggleSider, siderFold }) {
+  function handleClickMenu(e) {
+    logout()
+  }
   return (
     <div className={styles.header}>
-    	<div className={styles.siderbutton} onClick={switchSider}>
+    	<div className={styles.siderbutton} onClick={toggleSider}>
         <Icon type={siderFold ? 'menu-unfold' : 'menu-fold'} />
       </div>
       <Menu className="header-menu" mode="horizontal" onClick={handleClickMenu}>

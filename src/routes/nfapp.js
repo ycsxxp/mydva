@@ -7,7 +7,8 @@ import Login from '../components/Login/login';
 import styles from './nfapp.css';
 
 function Nfapp({ dispatch, nfapp }) {
-	const { loginStatus } = nfapp
+	const { loginStatus, siderCollapsed } = nfapp
+
 	const loginProps = {
     // loading,
     // loginButtonLoading,
@@ -15,9 +16,23 @@ function Nfapp({ dispatch, nfapp }) {
       dispatch({ type: 'nfapp/login', payload: data })
     }
   }
+
+  const headerProps = {
+    logout() {
+      dispatch({ type: 'nfapp/logout' })
+    }
+  }
+
+  const siderProps = {
+    siderCollapsed,
+    toggleSider(data) {
+      dispatch({ type: 'nfapp/toggleSider', payload: data })
+    }
+  }
+
   return (
 		<div className={styles.body} >{loginStatus
-        ? <Layout />
+        ? <Layout {...headerProps} {...siderProps} />
         : <Login {...loginProps} />}</div>
   );
 }
@@ -25,8 +40,8 @@ function Nfapp({ dispatch, nfapp }) {
 Nfapp.propTypes = {
   // children: PropTypes.element.isRequired,
   // location: PropTypes.object,
-  dispatch: PropTypes.func,
-  nfapp: PropTypes.object
+  dispatch: PropTypes.func.isRequired,
+  nfapp: PropTypes.object.isRequired
 }
 
 export default connect(({ nfapp }) => ({ nfapp }))(Nfapp)
