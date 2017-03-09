@@ -6,7 +6,7 @@ import Layout from '../components/Index/Layout'
 import Login from '../components/Login/login';
 import styles from './nfapp.css';
 
-function Nfapp({ dispatch, nfapp }) {
+function Nfapp({ children, dispatch, nfapp }) {
 	const { loginStatus, siderCollapsed } = nfapp
 
 	const loginProps = {
@@ -32,13 +32,13 @@ function Nfapp({ dispatch, nfapp }) {
 
   return (
 		<div className={styles.body} >{loginStatus
-        ? <Layout {...headerProps} {...siderProps} />
+        ? <Layout {...headerProps} {...siderProps} >{children}</Layout>
         : <Login {...loginProps} />}</div>
   );
 }
 
 Nfapp.propTypes = {
-  // children: PropTypes.element.isRequired,
+  children: PropTypes.element.isRequired,
   // location: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
   nfapp: PropTypes.object.isRequired

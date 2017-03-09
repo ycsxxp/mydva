@@ -19,7 +19,7 @@ const app = dva({
 
 // 2. Plugins
 // app.use({});
-// app.model(require('./models/nfapp'));
+app.model(require('./models/nfapp'))
 // app.model(require("./models/app"));
 // 3. Model
 // app.model(require('./models/example'));

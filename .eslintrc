@@ -42,7 +42,11 @@
     "no-undef": [0],
     "no-useless-constructor": [0],
     "prefer-const": [0],
-    "arrow-parens": [0]
+    "arrow-parens": [0],
+    "func-names": [0],
+    "keyword-spacing": [0],
+    "no-shadow": [0],
+    "no-param-reassign": [0]
   },
   "parserOptions": {
     "ecmaFeatures": {

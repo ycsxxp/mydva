@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'dva';
 // import { LocaleProvider } from 'antd';
 // import styles from './IndexPage.css';
@@ -6,7 +6,7 @@ import { connect } from 'dva';
 
 
 // function Dashboard({ dashboard }) {
-function Dashboard() {
+function Dashboard({ dashboard }) {
   return (
   	<div>dashboard</div>
   	// <LocaleProvider locale={enUS}>
@@ -16,6 +16,7 @@ function Dashboard() {
 }
 
 Dashboard.propTypes = {
+	dashboard: PropTypes.object.isRequire
 };
 
 export default connect(({ dashboard }) => ({ dashboard }))(Dashboard);

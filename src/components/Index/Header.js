@@ -4,14 +4,14 @@ import styles from './Header.less';
 
 const SubMenu = Menu.SubMenu
 
-function Header({ user, logout, toggleSider, siderFold }) {
+function Header({ user, logout, toggleSider, siderCollapsed }) {
   function handleClickMenu(e) {
     logout()
   }
   return (
     <div className={styles.header}>
     	<div className={styles.siderbutton} onClick={toggleSider}>
-        <Icon type={siderFold ? 'menu-unfold' : 'menu-fold'} />
+        <Icon type={siderCollapsed ? 'menu-unfold' : 'menu-fold'} />
       </div>
       <Menu className="header-menu" mode="horizontal" onClick={handleClickMenu}>
         <SubMenu style={{ float: 'right' }} title={<span> <Icon type="user" />ceshi </span>}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router } from 'dva/router';
-// import Nfapp from './routes/nfapp';
+import Nfapp from './routes/nfapp';
 
 const cached = {};
 function registerModel(app, model) {
@@ -14,23 +14,34 @@ function RouterConfig({ history, app }) {
   const routes = [
     {
       path: '/',
-      name: 'nfapp',
-      getComponent(nextState, cb) {
+      component: Nfapp,
+      getIndexRoute(nextState, cb) {
         require.ensure([], (require) => {
-          registerModel(app, require('./models/nfapp'));
-          cb(null, require('./routes/nfapp'))
-        })
-      }
-    },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      getComponent(nextState, cb) {
-        require.ensure([], (require) => {
+          registerModel(app, require('./models/dashboard'))
           cb(null, require('./routes/dashboard'))
-        })
-      }
+        }, 'dashboard')
+      },
+      childRoutes: [
+        {
+          path: 'dashboard',
+          name: 'dashboard',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              cb(null, require('./routes/dashboard'))
+            }, 'dashboard')
+          }
+        }
+      ]
     }
+    // {
+    //   path: '/dashboard',
+    //   name: 'dashboard',
+    //   getComponent(nextState, cb) {
+    //     require.ensure([], (require) => {
+    //       cb(null, require('./routes/dashboard'))
+    //     })
+    //   }
+    // }
   ];
   return <Router history={history} routes={routes} />;
 }
