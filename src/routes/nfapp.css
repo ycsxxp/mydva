@@ -2,6 +2,7 @@
 	background: url(../assets/a.jpg) no-repeat center 0;
 	height: 100%;
 	background-size: auto;
+	font-family: monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 }
 .spin {
   :global .ant-spin-container {

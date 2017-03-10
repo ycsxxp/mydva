@@ -1,7 +1,8 @@
 import React from 'react';
-import { Layout, Menu, Tabs, Icon } from 'antd';
+import { Layout, Menu, Tabs, Icon, Breadcrumb } from 'antd';
 
 import SiderMenu from './SiderMenu'
+import Bread from './Bread'
 import AccountManager from '../System/AccountManager';
 import AccountParamsSet from '../System/AccountParamsSet';
 import Header from './Header'
@@ -13,17 +14,24 @@ const TabPane = Tabs.TabPane;
 
 function LayoutComponent(props) {
   const siderMenuProps = {
+    location: props.location,
     siderCollapsed: props.siderCollapsed
   }
+
+  const breadProps = {
+    location: props.location
+  }
+
   return (
-    <Layout className={styles.layout}>
+    <Layout className={styles.layout} >
       <Sider collapsed={props.siderCollapsed} mode={props.siderCollapsed ? 'vertical' : 'inline'} >
         <div className={styles.logo} />
         <SiderMenu {...siderMenuProps} />
       </Sider>
-      <Layout>
+      <Layout className={styles.layoutright} >
         <Header className={styles.header} {...props} />
         <Content style={{ margin: '0 16px' }} >
+          <Bread {...breadProps} />
           {props.children}
         </Content>
         <Footer style={{ textAlign: 'center' }}>

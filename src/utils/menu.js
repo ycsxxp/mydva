@@ -1,21 +1,45 @@
 module.exports = [
   {
-    key: 'dashboard',
+    key: 'home',
     name: '首页',
-    icon: 'laptop'
+    icon: 'laptop',
+    child: [
+      {
+        key: 'status',
+        name: '状态'
+      },
+      {
+        key: 'event',
+        name: '事件'
+      }
+    ]
   },
   {
     key: 'system',
-    name: '系统管理',
+    name: '系统',
     icon: 'laptop',
     child: [
       {
         key: 'account',
-        name: '帐户管理'
+        name: '帐号管理',
+        child: [
+          {
+            key: 'webAccount',
+            name: 'WEB管理帐号'
+          },
+          {
+            key: 'shellAccount',
+            name: 'SHELL管理帐号'
+          },
+          {
+            key: 'setparams',
+            name: '参数设置'
+          }
+        ]
       },
       {
-        key: 'setparams',
-        name: '参数设置'
+        key: 'cert',
+        name: '证书管理'
       }
     ]
   },

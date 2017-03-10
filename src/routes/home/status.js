@@ -6,17 +6,18 @@ import { connect } from 'dva';
 
 
 // function Dashboard({ dashboard }) {
-function Dashboard({ dashboard }) {
+function Status({ status }) {
   return (
-  	<div>dashboard</div>
+  	<div>status</div>
   	// <LocaleProvider locale={enUS}>
     	// <LayoutComponent />
     // </LocaleProvider>
   );
 }
 
-Dashboard.propTypes = {
-	dashboard: PropTypes.object.isRequire
-};
+// Status.propTypes = {
+// 	status: PropTypes.object.isRequire
+// };
 
-export default connect(({ dashboard }) => ({ dashboard }))(Dashboard);
+// export default connect(({ status }) => ({ status }))(Status);
+export default Status;

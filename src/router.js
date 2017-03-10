@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router } from 'dva/router';
-import Nfapp from './routes/nfapp';
+// import Nfapp from './routes/nfapp';
 
 const cached = {};
 function registerModel(app, model) {
@@ -11,24 +11,47 @@ function registerModel(app, model) {
 }
 
 function RouterConfig({ history, app }) {
-  const routes = [
+  const rootRoute = [
     {
       path: '/',
-      component: Nfapp,
-      getIndexRoute(nextState, cb) {
+      indexRoute: {
+        getComponent(nextState, cb) {
+          require.ensure([], (require) => {
+            cb(null, require('./routes/home/status'))
+          }, 'status')
+        }
+      },
+      getComponent(nextState, cb) {
         require.ensure([], (require) => {
-          registerModel(app, require('./models/dashboard'))
-          cb(null, require('./routes/dashboard'))
-        }, 'dashboard')
+          cb(null, require('./routes/nfapp'))
+        }, 'nfapp')
       },
       childRoutes: [
         {
-          path: 'dashboard',
-          name: 'dashboard',
+          path: 'home-status',
+          name: 'status',
           getComponent(nextState, cb) {
             require.ensure([], (require) => {
-              cb(null, require('./routes/dashboard'))
-            }, 'dashboard')
+              cb(null, require('./routes/home/status'))
+            }, 'status')
+          }
+        },
+        {
+          path: 'home-event',
+          name: 'event',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              cb(null, require('./routes/home/event'))
+            }, 'event')
+          }
+        },
+        {
+          path: 'system-account-webAccount',
+          name: 'webAccount',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              cb(null, require('./routes/system/webAccount'))
+            }, 'webAccount')
           }
         }
       ]
@@ -43,7 +66,7 @@ function RouterConfig({ history, app }) {
     //   }
     // }
   ];
-  return <Router history={history} routes={routes} />;
+  return <Router history={history} routes={rootRoute} />;
 }
 
 export default RouterConfig;

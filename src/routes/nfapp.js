@@ -6,7 +6,7 @@ import Layout from '../components/Index/Layout'
 import Login from '../components/Login/login';
 import styles from './nfapp.css';
 
-function Nfapp({ children, dispatch, nfapp }) {
+function Nfapp({ children, location, dispatch, nfapp }) {
 	const { loginStatus, siderCollapsed } = nfapp
 
 	const loginProps = {
@@ -16,30 +16,28 @@ function Nfapp({ children, dispatch, nfapp }) {
       dispatch({ type: 'nfapp/login', payload: data })
     }
   }
-
-  const headerProps = {
+  // 传给layout组件模块的变量
+  const layoutProps = {
+    location,
+    siderCollapsed,
+    toggleSider(data) {
+      dispatch({ type: 'nfapp/toggleSider', payload: data })
+    },
     logout() {
       dispatch({ type: 'nfapp/logout' })
     }
   }
 
-  const siderProps = {
-    siderCollapsed,
-    toggleSider(data) {
-      dispatch({ type: 'nfapp/toggleSider', payload: data })
-    }
-  }
-
   return (
 		<div className={styles.body} >{loginStatus
-        ? <Layout {...headerProps} {...siderProps} >{children}</Layout>
+        ? <Layout {...layoutProps} >{children}</Layout>
         : <Login {...loginProps} />}</div>
   );
 }
 
 Nfapp.propTypes = {
   children: PropTypes.element.isRequired,
-  // location: PropTypes.object,
+  location: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   nfapp: PropTypes.object.isRequired
 }
