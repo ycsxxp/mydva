@@ -1,11 +1,22 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'dva'
+
+import WebAccountHeader from '../../components/System/WebAccount/Header'
 import WebAccountComponent from '../../components/System/webAccount'
 import EditModalComponent from '../../components/System/WebAccountEditModal'
 
 function WebAccount({ location, dispatch, SystemWebAccountModel }) {
 	const { modalVisible, modalType, currentItem } = SystemWebAccountModel
-	console.log(modalVisible)
+	const headerProps = {
+		onAdd() {
+			dispatch({
+				type: 'SystemWebAccountModel/showModal',
+				payload: {
+					modalType: 'create'
+				}
+			})
+		}
+	}
 	const webAccountProps = {
 		onEditItem(item) {
       dispatch({
@@ -18,7 +29,7 @@ function WebAccount({ location, dispatch, SystemWebAccountModel }) {
     }
 	}
 	const modalProps = {
-		item: currentItem,
+		item: modalType === 'create' ? {} : currentItem,
     type: modalType,
 		visible: modalVisible,
 		onOk(data) {
@@ -34,7 +45,8 @@ function WebAccount({ location, dispatch, SystemWebAccountModel }) {
     }
 	}
 	return (
-		<div>
+		<div className="content-inner">
+			<WebAccountHeader {...headerProps} />
 			<WebAccountComponent {...webAccountProps} />
 			<EditModalComponent {...modalProps} />
 		</div>

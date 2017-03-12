@@ -7,16 +7,16 @@ function webAccount(props) {
 		props.onEditItem(record)
 	}
 	const columns = [{
-		title: 'Name',
+		title: '姓名',
 		key: 'name',
 		dataIndex: 'name',
 		render: text => <a href="#">{text}</a>
 	}, {
-		title: 'Age',
+		title: '年龄',
 		key: 'age',
 		dataIndex: 'age'
 	}, {
-		title: 'Address',
+		title: '地址',
 		key: 'address',
 		dataIndex: 'address'
 	}, {

@@ -3,7 +3,7 @@ export default {
   namespace: 'SystemWebAccountModel',
   state: {
   	modalVisible: false,
-  	modalType: 'update',
+  	modalType: 'create',
   	currentItem: {}
   },
   reducers: {
@@ -15,6 +15,23 @@ export default {
   	}
   },
   effects: {
+  	*create({ payload }, { call, put }) {
+      yield put({ type: 'hideModal' })
+      // yield put({ type: 'showLoading' })
+      const data = yield call(create, payload)
+      if (data && data.success) {
+        yield put({
+          type: 'querySuccess',
+          payload: {
+            list: data.data,
+            pagination: {
+              total: data.page.total,
+              current: data.page.current
+            }
+          }
+        })
+      }
+    },
   	*update({ payload }, { select, call, put }) {
       yield put({ type: 'hideModal' })
       // yield put({ type: 'showLoading' })

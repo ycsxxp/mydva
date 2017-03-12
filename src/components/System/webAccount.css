@@ -2,3 +2,10 @@
 .normal {
 	background-color: #fff;
 }
+
+:global .content-inner {
+  background: #fff;
+  padding: 16px;
+  box-shadow: @shadow-1;
+  min-height: e("calc(100vh - 184px)");
+}
