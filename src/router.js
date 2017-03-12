@@ -50,6 +50,7 @@ function RouterConfig({ history, app }) {
           name: 'webAccount',
           getComponent(nextState, cb) {
             require.ensure([], (require) => {
+              registerModel(app, require('./models/System/webAccountModel'));
               cb(null, require('./routes/system/webAccount'))
             }, 'webAccount')
           }

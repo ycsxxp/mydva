@@ -3,8 +3,6 @@ import { Layout, Menu, Tabs, Icon, Breadcrumb } from 'antd';
 
 import SiderMenu from './SiderMenu'
 import Bread from './Bread'
-import AccountManager from '../System/AccountManager';
-import AccountParamsSet from '../System/AccountParamsSet';
 import Header from './Header'
 import styles from './Layout.less';
 
