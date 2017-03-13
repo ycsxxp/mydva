@@ -3,8 +3,9 @@ import { Table } from 'antd';
 import styles from './webAccount.css';
 
 function webAccount(props) {
+	const { dataSource, fetchUser, onEditItem } = props
 	const editHandler = (record) => {
-		props.onEditItem(record)
+		onEditItem(record)
 	}
 	const columns = [{
 		title: '姓名',
@@ -27,16 +28,14 @@ function webAccount(props) {
 			<span><a href="#" onClick={() => editHandler(record)} >编辑</a><span className="ant-divider" /><a>删除</a></span>
 		)
 	}];
-	const dataCount = 100;
-	const data = [];
-	for (let i = 0; i < dataCount; i++) {
-		data.push({
-			key: i,
-			name: 'yang-' + i,
-			age: i + 10,
-			address: 'Chengdu Begonia Road No.' + i
-		});
-	}
+	// for (let i = 0; i < dataCount; i++) {
+	// 	data.push({
+	// 		key: i,
+	// 		name: 'yang-' + i,
+	// 		age: i + 10,
+	// 		address: 'Chengdu Begonia Road No.' + i
+	// 	});
+	// }
 	// rowSelection object indicates the need for row selection
 	const rowSelection = {
 	  onChange: (selectedRowKeys, selectedRows) => {
@@ -56,7 +55,7 @@ function webAccount(props) {
 	const pagination = {
 		showSizeChanger: true,
 		defaultCurrent: 1,
-		total: dataCount,
+		total: dataSource.length,
 		pageSize: 5,
 		pageSizeOptions: ['5', '10', '30', '50', '100'],
 		showTotal: (total, range) => `${range[0]}-${range[1]} 共 ${total} 条`
@@ -67,7 +66,8 @@ function webAccount(props) {
     		bordered
     		rowSelection={rowSelection}
     		columns={columns}
-    		dataSource={data}
+    		rowKey={record => record.id}
+    		dataSource={dataSource}
     		pagination={pagination}
     	/>
   	</div>

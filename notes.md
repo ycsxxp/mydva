@@ -20,6 +20,7 @@ router.js 定义动态路由,每个路由中require各自的 models模块
 	* effects中对dispatch每个action
 	* require(/services/nfapp.js) 执行action对应的api请求
 	* reducers返回effects之后的state
+	* subscriptions 中 setup 设置组件被请求时调用API
 
 /services/nfapp.js
 	* 定义 nfapp模块中 action 请求的 api

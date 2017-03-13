@@ -6,7 +6,7 @@ import WebAccountComponent from '../../components/System/webAccount'
 import EditModalComponent from '../../components/System/WebAccountEditModal'
 
 function WebAccount({ location, dispatch, SystemWebAccountModel }) {
-	const { modalVisible, modalType, currentItem } = SystemWebAccountModel
+	const { userList, modalVisible, modalType, currentItem } = SystemWebAccountModel
 	const headerProps = {
 		onAdd() {
 			dispatch({
@@ -18,6 +18,12 @@ function WebAccount({ location, dispatch, SystemWebAccountModel }) {
 		}
 	}
 	const webAccountProps = {
+		dataSource: userList,
+		fetchUser() {
+			dispatch({
+				type: 'SystemWebAccountModel/fetch'
+			})
+		},
 		onEditItem(item) {
       dispatch({
         type: 'SystemWebAccountModel/showModal',

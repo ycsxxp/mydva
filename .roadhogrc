@@ -3,7 +3,7 @@
   "disableCSSModules": false,
   "proxy": {
     "/api": {
-      "target": "http://localhost/",
+      "target": "http://localhost/api-dva/",
       "changeOrigin": true,
       "pathRewrite": { "^/api" : "" }
     }
