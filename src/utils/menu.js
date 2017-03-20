@@ -25,11 +25,7 @@ module.exports = [
         child: [
           {
             key: 'webAccount',
-            name: 'WEB管理帐号'
-          },
-          {
-            key: 'shellAccount',
-            name: 'SHELL管理帐号'
+            name: '帐号管理'
           },
           {
             key: 'setparams',
