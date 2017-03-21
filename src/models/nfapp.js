@@ -31,7 +31,10 @@ export default {
         })
       } else {
         yield put({
-          type: 'loginFail'
+          type: 'loginFail',
+          payload: {
+            msg: data.message
+          }
         })
       }
     },
@@ -54,10 +57,19 @@ export default {
   },
   reducers: {
   	loginSuccess(state, action) {
+      console.log(action)
+      // return {
+      //   ...state,
+      //   ...action.payload,
+      //   loginStatus: true
+      //   // loginButtonLoading: false
+      // }
+    },
+    loginFail(state, action) {
       return {
         ...state,
         ...action.payload,
-        loginStatus: true
+        loginStatus: false
         // loginButtonLoading: false
       }
     },

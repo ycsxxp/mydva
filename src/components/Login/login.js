@@ -6,6 +6,7 @@ import styles from './login.css';
 const FormItem = Form.Item
 
 function Login(props) {
+  console.log(props)
 	function handleSubmit(e) {
     e.preventDefault();
     props.form.validateFields((err, values) => {
@@ -18,15 +19,15 @@ function Login(props) {
 	return (
     <div className={styles.divForm}>
   		<Form onSubmit={handleSubmit} className={styles.form}>
-        <FormItem>
-          {getFieldDecorator('userName', {
+        <FormItem hasFeedback>
+          {getFieldDecorator('loginUser', {
             rules: [{ required: true, message: '请输入用户名!' }]
           })(
             <Input addonBefore={<Icon type="user" />} placeholder="用户名" />
           )}
         </FormItem>
-        <FormItem>
-          {getFieldDecorator('password', {
+        <FormItem hasFeedback>
+          {getFieldDecorator('loginPass', {
             rules: [{ required: true, message: '请输入密码!' }]
           })(
             <Input addonBefore={<Icon type="lock" />} type="password" placeholder="密码" />

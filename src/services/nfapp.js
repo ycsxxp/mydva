@@ -1,8 +1,12 @@
 import request from '../utils/request';
 
-export async function login() {
+export async function login(params) {
   return request('/api/login', {
-  	method: 'post'
+  	method: 'post',
+  	headers: {
+  		'Content-Type': 'application/json'
+  	},
+  	body: JSON.stringify(params)
   })
 }
 
