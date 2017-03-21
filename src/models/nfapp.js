@@ -57,13 +57,12 @@ export default {
   },
   reducers: {
   	loginSuccess(state, action) {
-      console.log(action)
-      // return {
-      //   ...state,
-      //   ...action.payload,
-      //   loginStatus: true
-      //   // loginButtonLoading: false
-      // }
+      return {
+        ...state,
+        ...action.payload,
+        loginStatus: true
+        // loginButtonLoading: false
+      }
     },
     loginFail(state, action) {
       return {
