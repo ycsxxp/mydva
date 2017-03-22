@@ -11,7 +11,7 @@ export async function login(params) {
 }
 
 export async function logout() {
-  return request('/api/logout.php', {
+  return request('/api/logout', {
   	method: 'post'
   })
 }

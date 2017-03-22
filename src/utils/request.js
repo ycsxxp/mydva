@@ -26,7 +26,7 @@ export default async function request(url, options) {
   checkStatus(response)
   const data = await response.json()
   const ret = {
-    data,
+    res: data,
     headers: {}
   }
   return ret

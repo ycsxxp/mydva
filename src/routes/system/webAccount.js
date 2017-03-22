@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'dva'
 
-import WebAccountHeader from '../../components/System/WebAccount/Header'
+import WebAccountHeader from '../../components/System/Account/Header'
+import WebAccountModal from '../../components/System/Account/Modal'
 import WebAccountComponent from '../../components/System/webAccount'
-import EditModalComponent from '../../components/System/WebAccountEditModal'
 
-function WebAccount({ location, dispatch, SystemWebAccountModel }) {
-	const { userList, modalVisible, modalType, currentItem } = SystemWebAccountModel
+
+function WebAccount({ location, dispatch, SystemAccountModel }) {
+	const { userList, modalVisible, modalType, currentItem } = SystemAccountModel
 	const headerProps = {
 		onAdd() {
 			dispatch({
-				type: 'SystemWebAccountModel/showModal',
+				type: 'SystemAccountModel/showModal',
 				payload: {
 					modalType: 'create'
 				}
@@ -21,12 +22,12 @@ function WebAccount({ location, dispatch, SystemWebAccountModel }) {
 		dataSource: userList,
 		fetchUser() {
 			dispatch({
-				type: 'SystemWebAccountModel/fetch'
+				type: 'SystemAccountModel/fetch'
 			})
 		},
 		onEditItem(item) {
       dispatch({
-        type: 'SystemWebAccountModel/showModal',
+        type: 'SystemAccountModel/showModal',
         payload: {
           modalType: 'update',
           currentItem: item
@@ -38,27 +39,33 @@ function WebAccount({ location, dispatch, SystemWebAccountModel }) {
 		item: modalType === 'create' ? {} : currentItem,
     type: modalType,
 		visible: modalVisible,
-		onOk(data) {
+		handleOk(data) {
       dispatch({
-        type: `SystemWebAccountModel/${modalType}`,
+        type: `SystemAccountModel/${modalType}`,
         payload: data
       })
     },
     onCancel() {
       dispatch({
-        type: 'SystemWebAccountModel/hideModal'
+        type: 'SystemAccountModel/hideModal'
       })
     }
 	}
+
+	// <Modal /> 组件有标准的 React 生命周期，关闭后状态不会自动清空。
+	// 如果希望每次打开都是新内容，需要自行手动清空旧的状态或者打开时给 Modal 设置一个全新的 key。React会渲染出一个全新的对话框。
+	// 该方法会重新生成一个对话框 相当于设置了全新key
+	const WebAccountModalGen = () => <WebAccountModal {...modalProps} />
+
 	return (
 		<div className="content-inner">
 			<WebAccountHeader {...headerProps} />
 			<WebAccountComponent {...webAccountProps} />
-			<EditModalComponent {...modalProps} />
+			<WebAccountModalGen />
 		</div>
 	)
 }
 WebAccount.propsTypes = {
 	dispatch: PropTypes.func.isRequire
 }
-export default connect(({ SystemWebAccountModel }) => ({ SystemWebAccountModel }))(WebAccount)
+export default connect(({ SystemAccountModel }) => ({ SystemAccountModel }))(WebAccount)

@@ -1,8 +1,8 @@
 import { parse } from 'qs'
-import { fetchUser } from '../../services/system/webAccountService'
+import { fetchUser, createAccount } from '../../services/system/AccountService'
 
 export default {
-  namespace: 'SystemWebAccountModel',
+  namespace: 'SystemAccountModel',
   state: {
   	userList: [],
   	modalVisible: false,
@@ -20,12 +20,12 @@ export default {
   },
   effects: {
   	*fetch({ payload }, { call, put }) {
-  		const data = yield call(fetchUser, payload)
-  		if(data) {
+  		const ret = yield call(fetchUser, payload)
+  		if(ret) {
   			yield put({
   				type: 'fetchOk',
   				payload: {
-  					list: data.data
+  					list: ret.res
   				}
   			})
   		}
@@ -33,16 +33,16 @@ export default {
   	*create({ payload }, { call, put }) {
       yield put({ type: 'hideModal' })
       // yield put({ type: 'showLoading' })
-      const data = yield call(create, payload)
-      if (data && data.success) {
+      const { res } = yield call(createAccount, payload)
+      if (res && res.success) {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: data.data,
-            pagination: {
-              total: data.page.total,
-              current: data.page.current
-            }
+            list: res.data
+            // pagination: {
+            //   total: res.page.total,
+            //   current: res.page.current
+            // }
           }
         })
       }
@@ -52,15 +52,15 @@ export default {
       // yield put({ type: 'showLoading' })
       const id = yield select(({ users }) => users.currentItem.id)
       const newUser = { ...payload, id }
-      const data = yield call(update, newUser)
-      if (data && data.success) {
+      const res = yield call(update, newUser)
+      if (res && res.success) {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: data.data,
+            list: res.data,
             pagination: {
-              total: data.page.total,
-              current: data.page.current
+              total: res.page.total,
+              current: res.page.current
             }
           }
         })
@@ -78,7 +78,18 @@ export default {
   		return { ...state, ...action.payload, modalVisible: true }
   	},
   	hideModal(state, action) {
-  		return { ...state, ...action.payload, modalVisible: false }
-  	}
+  		return { ...state, modalVisible: false }
+  	},
+    querySuccess(state, action) {
+      const { list } = action.payload
+      return { ...state,
+        userList: list,
+        loading: false
+        // pagination: {
+        //   ...state.pagination,
+        //   ...pagination
+        // }
+      }
+    }
   }
 };

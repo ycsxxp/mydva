@@ -19,8 +19,8 @@ export default {
   effects: {
   	*login({ payload }, { call, put }) {
       yield put({ type: 'showLoginButtonLoading' })
-      const { data } = yield call(login, parse(payload))
-      if (data.success) {
+      const { res } = yield call(login, parse(payload))
+      if (res.success) {
         yield put({
         	type: 'loginSuccess',
           payload: {
@@ -33,15 +33,15 @@ export default {
         yield put({
           type: 'loginFail',
           payload: {
-            msg: data.message
+            msg: res.message
           }
         })
       }
     },
     *logout({ payload }, { call, put }) {
       yield put({ type: 'showLoginButtonLoading' })
-      const { data } = yield call(logout, parse(payload))
-      if (data.success) {
+      const { res } = yield call(logout, parse(payload))
+      if (res.success) {
         yield put({
           type: 'logoutSuccess'
         })
