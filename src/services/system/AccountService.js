@@ -11,11 +11,17 @@ export async function fetchUser() {
 export async function createAccount(data) {
 	return request('/api/insertAccount', {
 		method: 'post',
-		headers: {
-  		'Content-Type': 'application/json'
-  	},
+		headers: headerType,
   	body: JSON.stringify(data)
 	})
+}
+
+export async function updateAccount(data) {
+  return request('/api/updateAccount', {
+    method: 'post',
+    headers: headerType,
+    body: JSON.stringify(data)
+  })
 }
 
 export async function deleteAccount(data) {

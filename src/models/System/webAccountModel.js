@@ -1,5 +1,5 @@
 import { parse } from 'qs'
-import { fetchUser, createAccount, deleteAccount } from '../../services/system/AccountService'
+import { fetchUser, createAccount, updateAccount, deleteAccount } from '../../services/system/AccountService'
 
 export default {
   namespace: 'SystemAccountModel',
@@ -50,24 +50,20 @@ export default {
   	*update({ payload }, { select, call, put }) {
       yield put({ type: 'hideModal' })
       // yield put({ type: 'showLoading' })
-      const id = yield select(({ users }) => users.currentItem.id)
+      const id = yield select(({ SystemAccountModel }) => SystemAccountModel.currentItem.id)
       const newUser = { ...payload, id }
-      const res = yield call(update, newUser)
+      const { res } = yield call(updateAccount, newUser)
       if (res && res.success) {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: res.data,
-            pagination: {
-              total: res.page.total,
-              current: res.page.current
-            }
+            list: res.data
           }
         })
       }
     },
     *delete({ payload }, { call, put }) {
-      const res = yield call(deleteAccount, payload)
+      const { res } = yield call(deleteAccount, payload)
       if(res && res.success) {
         yield put({
           type: 'querySuccess',

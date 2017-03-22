@@ -6,7 +6,6 @@ import styles from './login.css';
 const FormItem = Form.Item
 
 function Login(props) {
-  console.log(props)
 	function handleSubmit(e) {
     e.preventDefault();
     props.form.validateFields((err, values) => {
