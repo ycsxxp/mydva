@@ -12,7 +12,6 @@
 - 通过 connect 绑定 models 中对应模块的 namespace 如下
 		export default connect(({ nfapp }) => ({ nfapp }))(Nfapp)
 		nfapp 为 models/nfapp.js 中的 namespace: 'nfapp'
--
 
 ### /models/nfapp.js nfapp模块的 model
 - 在index.js中启动app时 app.model(require('./models/nfapp')) 加载
@@ -35,4 +34,5 @@
 		<WebAccount />
 
 ### Markdown教程
-	[8分钟学会Markdown ，写作效率翻一番！新手手册 V2.4](http://www.jianshu.com/p/38fe4911b4a0)
+- [8分钟学会Markdown ，写作效率翻一番！新手手册 V2.4](http://www.jianshu.com/p/38fe4911b4a0)
+- [Markdown 语法说明简体中文版](http://www.jianshu.com/p/c44144ca5225)
