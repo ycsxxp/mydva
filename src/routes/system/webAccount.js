@@ -33,6 +33,14 @@ function WebAccount({ location, dispatch, SystemAccountModel }) {
           currentItem: item
         }
       })
+    },
+    onDeleteItem(item) {
+    	dispatch({
+    		type: 'SystemAccountModel/delete',
+    		payload: {
+    			id: item.id
+    		}
+    	})
     }
 	}
 	const modalProps = {

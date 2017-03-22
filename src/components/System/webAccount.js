@@ -3,9 +3,12 @@ import { Table } from 'antd';
 import styles from './webAccount.css';
 
 function webAccount(props) {
-	const { dataSource, fetchUser, onEditItem } = props
+	const { dataSource, fetchUser, onEditItem, onDeleteItem } = props
 	const editHandler = (record) => {
 		onEditItem(record)
+	}
+	const deleteHandler = (record) => {
+		onDeleteItem(record)
 	}
 	const columns = [{
 		title: '姓名',
@@ -25,7 +28,7 @@ function webAccount(props) {
 		key: 'action',
 		width: 100,
 		render: (text, record) => (
-			<span><a href="#" onClick={() => editHandler(record)} >编辑</a><span className="ant-divider" /><a>删除</a></span>
+			<span><a href="#" onClick={() => editHandler(record)} >编辑</a><span className="ant-divider" /><a href="#" onClick={() => deleteHandler(record)} >删除</a></span>
 		)
 	}];
 	// for (let i = 0; i < dataCount; i++) {

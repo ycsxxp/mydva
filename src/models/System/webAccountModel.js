@@ -1,5 +1,5 @@
 import { parse } from 'qs'
-import { fetchUser, createAccount } from '../../services/system/AccountService'
+import { fetchUser, createAccount, deleteAccount } from '../../services/system/AccountService'
 
 export default {
   namespace: 'SystemAccountModel',
@@ -62,6 +62,17 @@ export default {
               total: res.page.total,
               current: res.page.current
             }
+          }
+        })
+      }
+    },
+    *delete({ payload }, { call, put }) {
+      const res = yield call(deleteAccount, payload)
+      if(res && res.success) {
+        yield put({
+          type: 'querySuccess',
+          payload: {
+            list: res.data
           }
         })
       }
