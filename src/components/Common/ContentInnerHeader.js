@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Button } from 'antd'
 import styles from './Header.css';
 
-function Header(props) {
+function ContentInnerHeader(props) {
 	const { onAdd } = props
 
   return (
@@ -14,4 +14,4 @@ function Header(props) {
   );
 }
 
-export default Header;
+export default ContentInnerHeader;

@@ -2,18 +2,18 @@ import React from 'react'
 import { Modal } from 'antd'
 import { connect } from 'dva'
 
-import AccountHeader from '../../components/System/Account/Header'
-import AccountModal from '../../components/System/Account/Modal'
-import CommonTable from '../../components/Common/CommonTable'
+import ContentInnerHeader from '../../components/Common/ContentInnerHeader'
+import CommonModal from '../../components/Common/Modal'
+import ContentInnerTable from '../../components/Common/ContentInnerTable'
 
 const confirm = Modal.confirm
 
-function SubnetRoute({ location, dispatch, SystemAccountModel }) {
-	const { userList, modalVisible, modalType, currentItem } = SystemAccountModel
+function SubnetRoute({ location, dispatch, NetworkSubnetModel }) {
+	const { subnetList, modalVisible, modalType, currentItem } = NetworkSubnetModel
 	const headerProps = {
 		onAdd() {
 			dispatch({
-				type: 'SystemAccountModel/showModal',
+				type: 'NetworkSubnetModel/showModal',
 				payload: {
 					modalType: 'create'
 				}
@@ -34,7 +34,7 @@ function SubnetRoute({ location, dispatch, SystemAccountModel }) {
 			title: '确定要删除这条记录吗?',
 			onOk() {
 				dispatch({
-	    		type: 'SystemAccountModel/delete',
+	    		type: 'NetworkSubnetModel/delete',
 	    		payload: {
 	    			id: item.id
 	    		}
@@ -72,7 +72,7 @@ function SubnetRoute({ location, dispatch, SystemAccountModel }) {
 
 	const listProps = {
 		columns: columns,
-		dataSource: userList
+		dataSource: subnetList
 	}
 	const modalProps = {
 		item: modalType === 'create' ? {} : currentItem,
@@ -80,13 +80,13 @@ function SubnetRoute({ location, dispatch, SystemAccountModel }) {
 		visible: modalVisible,
 		handleOk(data) {
       dispatch({
-        type: `SystemAccountModel/${modalType}`,
+        type: `NetworkSubnetModel/${modalType}`,
         payload: data
       })
     },
     onCancel() {
       dispatch({
-        type: 'SystemAccountModel/hideModal'
+        type: 'NetworkSubnetModel/hideModal'
       })
     }
 	}
@@ -94,15 +94,15 @@ function SubnetRoute({ location, dispatch, SystemAccountModel }) {
 	// <Modal /> 组件有标准的 React 生命周期，关闭后状态不会自动清空。
 	// 如果希望每次打开都是新内容，需要自行手动清空旧的状态或者打开时给 Modal 设置一个全新的 key。React会渲染出一个全新的对话框。
 	// 该方法会重新生成一个对话框 相当于设置了全新key
-	const AccountModalGen = () => <AccountModal {...modalProps} />
+	const CommonModalGen = () => <CommonModal {...modalProps} />
 
 	return (
 		<div className="content-inner">
-			<AccountHeader {...headerProps} />
-			<CommonTable {...listProps} />
-			<AccountModalGen />
+			<ContentInnerHeader {...headerProps} />
+			<ContentInnerTable {...listProps} />
+			<CommonModalGen />
 		</div>
 	)
 }
 
-export default connect(({ SystemAccountModel }) => ({ SystemAccountModel }))(SubnetRoute)
+export default connect(({ NetworkSubnetModel }) => ({ NetworkSubnetModel }))(SubnetRoute)

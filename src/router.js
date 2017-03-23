@@ -70,7 +70,7 @@ function RouterConfig({ history, app }) {
           name: 'Subnet',
           getComponent(nextState, cb) {
             require.ensure([], (require) => {
-              registerModel(app, require('./models/System/AccountModel'));
+              registerModel(app, require('./models/Network/SubnetModel'));
               cb(null, require('./routes/Network/SubnetRoute'))
             }, 'Subnet')
           }

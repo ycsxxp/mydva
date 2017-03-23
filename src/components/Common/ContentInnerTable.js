@@ -1,46 +1,20 @@
 import React from 'react'
 import { Table, Modal } from 'antd'
-import styles from './List.css'
+import styles from './CommonTable.css'
 
-const confirm = Modal.confirm
-
-function webAccountList(props) {
-	const { dataSource, fetchUser, onEditItem, onDeleteItem } = props
-	const editHandler = (record) => {
-		onEditItem(record)
-	}
-	const deleteHandler = (record) => {
-		confirm({
-			title: '确定要删除这条记录吗?',
-			onOk() {
-				onDeleteItem(record)
-			}
-		})
-	}
-	const columns = [{
-		title: '姓名',
-		key: 'name',
-		dataIndex: 'name',
-		render: text => <a href="#">{text}</a>,
-		width: '25%'
-	}, {
-		title: '年龄',
-		key: 'age',
-		dataIndex: 'age',
-		width: '20%'
-	}, {
-		title: '地址',
-		key: 'address',
-		dataIndex: 'address',
-		width: '40%'
-	}, {
-		title: '操作',
-		key: 'action',
-		width: '10%',
-		render: (text, record) => (
-			<span><a href="#" onClick={() => editHandler(record)} >编辑</a><span className="ant-divider" /><a href="#" onClick={() => deleteHandler(record)} >删除</a></span>
-		)
-	}];
+function ContentInnerTable(props) {
+	const { dataSource, editHandler, deleteHandler, columns } = props
+	// const editHandler = (record) => {
+	// 	onEditItem(record)
+	// }
+	// const deleteHandler = (record) => {
+	// 	confirm({
+	// 		title: '确定要删除这条记录吗?',
+	// 		onOk() {
+	// 			onDeleteItem(record)
+	// 		}
+	// 	})
+	// }
 	// for (let i = 0; i < dataCount; i++) {
 	// 	data.push({
 	// 		key: i,
@@ -87,4 +61,4 @@ function webAccountList(props) {
 	);
 }
 
-export default webAccountList;
+export default ContentInnerTable;
