@@ -24,11 +24,11 @@ module.exports = [
         name: '帐号管理',
         child: [
           {
-            key: 'webAccount',
+            key: 'account',
             name: '帐号管理'
           },
           {
-            key: 'setparams',
+            key: 'params',
             name: '参数设置'
           }
         ]
@@ -40,44 +40,43 @@ module.exports = [
     ]
   },
   {
-    key: 'ui',
-    name: 'UI组件',
+    key: 'object',
+    name: '对象',
     icon: 'camera-o',
-    clickable: false,
     child: [
       {
-        key: 'ico',
-        name: 'Ico 图标'
-      },
-      {
-        key: 'search',
-        name: 'Search 搜索'
-      }
-    ]
-  },
-  {
-    key: 'navigation',
-    name: '测试导航',
-    icon: 'setting',
-    child: [
-      {
-        key: 'navigation1',
-        name: '二级导航1'
-      },
-      {
-        key: 'navigation2',
-        name: '二级导航2',
+        key: 'network',
+        name: '网络',
         child: [
           {
-            key: 'navigation21',
-            name: '三级导航1'
+            key: 'subnet',
+            name: '子网'
           },
           {
-            key: 'navigation22',
-            name: '三级导航2'
+            key: 'node',
+            name: '节点'
+          }
+        ]
+      },
+      {
+        key: 'application',
+        name: '应用',
+        child: [
+          {
+            key: 'application',
+            name: '应用'
+          },
+          {
+            key: 'customApp',
+            name: '自定义应用'
           }
         ]
       }
     ]
+  },
+  {
+    key: 'configWizard',
+    name: '配置向导',
+    icon: 'camera-o'
   }
 ]

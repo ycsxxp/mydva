@@ -46,13 +46,33 @@ function RouterConfig({ history, app }) {
           }
         },
         {
-          path: 'system-account-webAccount',
-          name: 'webAccount',
+          path: 'system-account-account',
+          name: 'Account',
           getComponent(nextState, cb) {
             require.ensure([], (require) => {
-              registerModel(app, require('./models/system/webAccountModel'));
-              cb(null, require('./routes/system/webAccount'))
-            }, 'webAccount')
+              registerModel(app, require('./models/System/AccountModel'));
+              cb(null, require('./routes/System/AccountRoute'))
+            }, 'Account')
+          }
+        },
+        {
+          path: 'system-account-params',
+          name: 'Params',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              // registerModel(app, require('./models/System/Model'));
+              cb(null, require('./routes/System/ParamsRoute'))
+            }, 'Params')
+          }
+        },
+        {
+          path: 'object-network-subnet',
+          name: 'Subnet',
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+              registerModel(app, require('./models/System/AccountModel'));
+              cb(null, require('./routes/Network/SubnetRoute'))
+            }, 'Subnet')
           }
         }
       ]

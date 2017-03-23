@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'dva'
 
-import WebAccountHeader from '../../components/System/Account/Header'
-import WebAccountModal from '../../components/System/Account/Modal'
-import WebAccountComponent from '../../components/System/webAccount'
+import AccountHeader from '../../components/System/Account/Header'
+import AccountModal from '../../components/System/Account/Modal'
+import AccountList from '../../components/System/Account/List'
 
 
-function WebAccount({ location, dispatch, SystemAccountModel }) {
+function AccountRoute({ location, dispatch, SystemAccountModel }) {
 	const { userList, modalVisible, modalType, currentItem } = SystemAccountModel
 	const headerProps = {
 		onAdd() {
@@ -18,7 +18,7 @@ function WebAccount({ location, dispatch, SystemAccountModel }) {
 			})
 		}
 	}
-	const webAccountProps = {
+	const listProps = {
 		dataSource: userList,
 		fetchUser() {
 			dispatch({
@@ -63,17 +63,17 @@ function WebAccount({ location, dispatch, SystemAccountModel }) {
 	// <Modal /> 组件有标准的 React 生命周期，关闭后状态不会自动清空。
 	// 如果希望每次打开都是新内容，需要自行手动清空旧的状态或者打开时给 Modal 设置一个全新的 key。React会渲染出一个全新的对话框。
 	// 该方法会重新生成一个对话框 相当于设置了全新key
-	const WebAccountModalGen = () => <WebAccountModal {...modalProps} />
+	const AccountModalGen = () => <AccountModal {...modalProps} />
 
 	return (
 		<div className="content-inner">
-			<WebAccountHeader {...headerProps} />
-			<WebAccountComponent {...webAccountProps} />
-			<WebAccountModalGen />
+			<AccountHeader {...headerProps} />
+			<AccountList {...listProps} />
+			<AccountModalGen />
 		</div>
 	)
 }
-WebAccount.propsTypes = {
+AccountRoute.propsTypes = {
 	dispatch: PropTypes.func.isRequire
 }
-export default connect(({ SystemAccountModel }) => ({ SystemAccountModel }))(WebAccount)
+export default connect(({ SystemAccountModel }) => ({ SystemAccountModel }))(AccountRoute)

@@ -1,32 +1,42 @@
-import React from 'react';
-import { Table } from 'antd';
-import styles from './webAccount.css';
+import React from 'react'
+import { Table, Modal } from 'antd'
+import styles from './List.css'
 
-function webAccount(props) {
+const confirm = Modal.confirm
+
+function webAccountList(props) {
 	const { dataSource, fetchUser, onEditItem, onDeleteItem } = props
 	const editHandler = (record) => {
 		onEditItem(record)
 	}
 	const deleteHandler = (record) => {
-		onDeleteItem(record)
+		confirm({
+			title: '确定要删除这条记录吗?',
+			onOk() {
+				onDeleteItem(record)
+			}
+		})
 	}
 	const columns = [{
 		title: '姓名',
 		key: 'name',
 		dataIndex: 'name',
-		render: text => <a href="#">{text}</a>
+		render: text => <a href="#">{text}</a>,
+		width: '25%'
 	}, {
 		title: '年龄',
 		key: 'age',
-		dataIndex: 'age'
+		dataIndex: 'age',
+		width: '20%'
 	}, {
 		title: '地址',
 		key: 'address',
-		dataIndex: 'address'
+		dataIndex: 'address',
+		width: '40%'
 	}, {
 		title: '操作',
 		key: 'action',
-		width: 100,
+		width: '10%',
 		render: (text, record) => (
 			<span><a href="#" onClick={() => editHandler(record)} >编辑</a><span className="ant-divider" /><a href="#" onClick={() => deleteHandler(record)} >删除</a></span>
 		)
@@ -77,4 +87,4 @@ function webAccount(props) {
 	);
 }
 
-export default webAccount;
+export default webAccountList;

@@ -1,5 +1,5 @@
 import { parse } from 'qs'
-import { fetchUser, createAccount, updateAccount, deleteAccount } from '../../services/system/AccountService'
+import { fetchUser, createAccount, updateAccount, deleteAccount } from '../../services/System/AccountService'
 
 export default {
   namespace: 'SystemAccountModel',
@@ -12,9 +12,9 @@ export default {
   subscriptions: {
   	setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
-        if (pathname === '/system-account-webAccount') {
+        // if (pathname === '/system-account-account') {
           dispatch({ type: 'fetch', payload: query });
-        }
+        // }
       });
     }
   },
