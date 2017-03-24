@@ -22,7 +22,7 @@ function SubnetRoute({ location, dispatch, NetworkSubnetModel }) {
 	}
 	const editHandler = (item) => {
 		dispatch({
-      type: 'SystemAccountModel/showModal',
+      type: 'NetworkSubnetModel/showModal',
       payload: {
         modalType: 'update',
         currentItem: item
@@ -45,20 +45,20 @@ function SubnetRoute({ location, dispatch, NetworkSubnetModel }) {
 
 	const columns = [
 		{
-			title: '地址',
+			title: '名称',
 			key: 'name',
 			dataIndex: 'name',
 			render: text => <a href="#">{text}</a>,
 			width: '20%'
 		}, {
-			title: '年龄',
-			key: 'age',
-			dataIndex: 'age',
+			title: 'IP',
+			key: 'ip',
+			dataIndex: 'ip',
 			width: '20%'
 		}, {
-			title: '姓名',
-			key: 'address',
-			dataIndex: 'address',
+			title: '网关',
+			key: 'network',
+			dataIndex: 'network',
 			width: '40%'
 		}, {
 			title: '操作',

@@ -12,9 +12,9 @@ export default {
 	subscriptions: {
 		setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
-        // if (pathname === '/system-account-account') {
+        if (pathname === '/object-network-subnet') {
           dispatch({ type: 'fetch', payload: query });
-        // }
+        }
       });
     }
 	},
