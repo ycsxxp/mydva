@@ -51,8 +51,8 @@ export default {
       yield put({ type: 'hideModal' })
       // yield put({ type: 'showLoading' })
       const id = yield select(({ SystemAccountModel }) => SystemAccountModel.currentItem.id)
-      const newUser = { ...payload, id }
-      const { res } = yield call(updateAccount, newUser)
+      const newData = { ...payload, id }
+      const { res } = yield call(updateAccount, newData)
       if (res && res.success) {
         yield put({
           type: 'querySuccess',

@@ -3,8 +3,8 @@ import { Modal } from 'antd'
 import { connect } from 'dva'
 
 import ContentInnerHeader from '../../components/Common/ContentInnerHeader'
-import CommonModal from '../../components/Common/Modal'
 import ContentInnerTable from '../../components/Common/ContentInnerTable'
+import SubnetModal from '../../components/Network/Subnet/Modal'
 
 const confirm = Modal.confirm
 
@@ -94,13 +94,13 @@ function SubnetRoute({ location, dispatch, NetworkSubnetModel }) {
 	// <Modal /> 组件有标准的 React 生命周期，关闭后状态不会自动清空。
 	// 如果希望每次打开都是新内容，需要自行手动清空旧的状态或者打开时给 Modal 设置一个全新的 key。React会渲染出一个全新的对话框。
 	// 该方法会重新生成一个对话框 相当于设置了全新key
-	const CommonModalGen = () => <CommonModal {...modalProps} />
+	const SubnetModalGen = () => <SubnetModal {...modalProps} />
 
 	return (
 		<div className="content-inner">
 			<ContentInnerHeader {...headerProps} />
 			<ContentInnerTable {...listProps} />
-			<CommonModalGen />
+			<SubnetModalGen />
 		</div>
 	)
 }

@@ -1,5 +1,5 @@
 import { parse } from 'qs'
-import { subnetList, createSubnet } from '../../services/Network/SubnetService'
+import { subnetList, createSubnet, updateSubnet, deleteSubnet } from '../../services/Network/SubnetService'
 
 export default {
 	namespace: 'NetworkSubnetModel',
@@ -33,7 +33,44 @@ export default {
 		*create({ payload }, { call, put }) {
       yield put({ type: 'hideModal' })
       // yield put({ type: 'showLoading' })
+      console.log(payload)
       const { res } = yield call(createSubnet, payload)
+      if (res && res.success) {
+        yield put({
+          type: 'querySuccess',
+          payload: {
+            list: res.data
+            // pagination: {
+            //   total: res.page.total,
+            //   current: res.page.current
+            // }
+          }
+        })
+      }
+    },
+    *update({ payload }, { select, call, put }) {
+      yield put({ type: 'hideModal' })
+      // yield put({ type: 'showLoading' })
+      const id = yield select(({ NetworkSubnetModel }) => NetworkSubnetModel.currentItem.id)
+      const newData = { ...payload, id }
+      const { res } = yield call(updateSubnet, newData)
+      if (res && res.success) {
+        yield put({
+          type: 'querySuccess',
+          payload: {
+            list: res.data
+            // pagination: {
+            //   total: res.page.total,
+            //   current: res.page.current
+            // }
+          }
+        })
+      }
+    },
+    *delete({ payload }, { call, put }) {
+      yield put({ type: 'hideModal' })
+      // yield put({ type: 'showLoading' })
+      const { res } = yield call(deleteSubnet, payload)
       if (res && res.success) {
         yield put({
           type: 'querySuccess',
